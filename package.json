@@ -9,11 +9,14 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/systemjs": "^6.13.5",
     "@types/three": "^0.167.1",
     "typescript": "^5.5.3",
     "vite": "^5.4.1"
   },
   "dependencies": {
+    "path": "^0.12.7",
+    "systemjs": "^6.15.1",
     "three": "^0.167.1"
   }
 }
