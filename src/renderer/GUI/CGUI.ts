@@ -1,12 +1,6 @@
 import { CCore } from "@/app/CCore";
 import { ImGui, ImGui_Impl } from "@zhobo63/imgui-ts";
 
-let text: ImGui.ImStringBuffer = new ImGui.ImStringBuffer(128, "input text");
-let text_area: ImGui.ImStringBuffer = new ImGui.ImStringBuffer(
-  128,
-  "edit multiline"
-);
-
 class CGUI {
   constructor(private readonly g_core: CCore) {
     this.init();
@@ -31,11 +25,9 @@ class CGUI {
 
     ImGui_Impl.NewFrame(time);
     ImGui.NewFrame();
-    ImGui.Begin("Hello");
-    ImGui.Text("Version " + ImGui.VERSION);
-    ImGui.InputText("Input", text);
-    ImGui.InputTextMultiline("Text", text_area);
-    ImGui.End();
+
+    ImGui.ShowDemoWindow();
+
     ImGui.EndFrame();
     ImGui.Render();
 
