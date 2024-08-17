@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import Stats from "stats.js";
+import { CCore } from "@/app/CCore";
+import { PointerLockControls } from "three/examples/jsm/Addons.js";
 
 class CRenderer {
   private scene: THREE.Scene;
@@ -7,7 +9,7 @@ class CRenderer {
   public renderer: THREE.WebGLRenderer;
   private stats: Stats;
 
-  constructor() {
+  constructor(private readonly g_core: CCore) {
     this.scene = new THREE.Scene();
 
     this.camera = new THREE.PerspectiveCamera(
@@ -18,8 +20,8 @@ class CRenderer {
     );
 
     this.camera.position.y = 5;
-    this.camera.position.z = 5;
-    this.camera.position.x = 0;
+    this.camera.position.z = 10;
+    this.camera.position.x = -13;
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -33,6 +35,20 @@ class CRenderer {
     this.stats = new Stats();
     this.stats.dom.style.position = "absolute";
     this.stats.dom.style.top = "0px";
+
+    const dLight = new THREE.DirectionalLight("white", 0.6);
+
+    dLight.position.x = 20;
+    dLight.position.y = 30;
+    dLight.castShadow = true;
+    dLight.shadow.mapSize.width = 4096;
+    dLight.shadow.mapSize.height = 4096;
+    const d = 35;
+    dLight.shadow.camera.left = -d;
+    dLight.shadow.camera.right = d;
+    dLight.shadow.camera.top = d;
+    dLight.shadow.camera.bottom = -d;
+    this.scene.add(dLight);
 
     document.body.appendChild(this.stats.dom);
 

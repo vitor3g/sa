@@ -1,28 +1,33 @@
 import { CGameSA } from "@/game_sa/CGameSA";
+import { PhysicsEngine } from "@/main";
 import { CRenderer } from "@/renderer/Graphics/CRenderer";
 import { CGUI } from "@/renderer/GUI/CGUI";
 
 class CCore {
   private readonly Renderer: CRenderer;
-  private readonly GUI: CGUI;
+  private readonly CGUI: CGUI;
   private readonly CGameSA: CGameSA;
 
-  constructor() {
-    this.Renderer = new CRenderer();
-    this.GUI = new CGUI(this);
+  constructor(private readonly g_physicsEngine: PhysicsEngine) {
+    this.Renderer = new CRenderer(this);
     this.CGameSA = new CGameSA(this);
+    this.CGUI = new CGUI(this);
   }
 
-  public GetRenderer() {
+  public getRenderer() {
     return this.Renderer;
   }
 
-  public GetGUI() {
-    return this.GUI;
+  public getGUI() {
+    return this.CGUI;
   }
 
-  public GetGameSA() {
+  public getGameSA() {
     return this.CGameSA;
+  }
+
+  public getRapier() {
+    return this.g_physicsEngine;
   }
 }
 

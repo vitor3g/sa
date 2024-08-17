@@ -1,6 +1,5 @@
 import { CCore } from "@/app/CCore";
 import { ImGui, ImGui_Impl } from "@zhobo63/imgui-ts";
-
 class CGUI {
   constructor(private readonly g_core: CCore) {
     this.init();
@@ -15,24 +14,36 @@ class CGUI {
     ImGui.StyleColorsDark();
     io.Fonts.AddFontDefault();
 
-    ImGui_Impl.Init(this.g_core.GetRenderer().renderer.domElement);
+    ImGui_Impl.Init(this.g_core.getRenderer().renderer.domElement);
 
+    // Start the rendering loop
     requestAnimationFrame(this.Draw);
   }
 
   public Draw = (time: number): void => {
+    // Request the next frame
     requestAnimationFrame(this.Draw);
 
-    ImGui_Impl.NewFrame(time);
-    ImGui.NewFrame();
+    // this.g_core.getRenderer().renderer.state.reset();
 
-    // ImGui.ShowDemoWindow();
+    // // New frame for ImGui
+    // ImGui_Impl.NewFrame(time);
+    // ImGui.NewFrame();
 
-    ImGui.EndFrame();
-    ImGui.Render();
+    // // Render the ImGui demo window (or any custom UI)
+    // // ImGui.ShowDemoWindow();
 
-    this.g_core.GetRenderer().Draw();
-    ImGui_Impl.RenderDrawData(ImGui.GetDrawData());
+    // // Render the Three.js scene
+
+    // // End the ImGui frame and render the ImGui UI
+    // ImGui.EndFrame();
+    // ImGui.Render();
+    this.g_core.getRenderer().Draw();
+
+    // ImGui_Impl.ClearBuffer(new ImGui.ImVec4(0.25, 0.25, 0.25, 1));
+    //
+    // Render the ImGui draw data
+    // ImGui_Impl.RenderDrawData(ImGui.GetDrawData());
   };
 }
 
