@@ -1,14 +1,17 @@
 import { CRenderer } from "@/renderer/Graphics/CRenderer";
+import { CGUI } from "@/renderer/GUI/CGUI";
 
 class CCore {
-  private readonly renderer: CRenderer;
+  private readonly Renderer: CRenderer;
+  private readonly Gui: CGUI;
 
   constructor() {
-    this.renderer = new CRenderer(this);
+    this.Renderer = new CRenderer();
+    this.Gui = new CGUI(this);
   }
 
-  async getRenderer() {
-    return this.renderer;
+  public GetRenderer() {
+    return this.Renderer;
   }
 }
 

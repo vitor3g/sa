@@ -1,12 +1,11 @@
-import { CCore } from "@/app/CCore";
 import * as THREE from "three";
 
 class CRenderer {
   private scene: THREE.Scene;
   private camera: THREE.PerspectiveCamera;
-  private renderer: THREE.WebGLRenderer;
+  public renderer: THREE.WebGLRenderer;
 
-  constructor(private readonly g_Core: CCore) {
+  constructor() {
     this.scene = new THREE.Scene();
 
     this.camera = new THREE.PerspectiveCamera(
@@ -47,10 +46,6 @@ class CRenderer {
 
   public getCamera(): THREE.PerspectiveCamera {
     return this.camera;
-  }
-
-  public getRenderer(): THREE.WebGLRenderer {
-    return this.renderer;
   }
 }
 

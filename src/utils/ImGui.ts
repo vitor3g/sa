@@ -1,2 +1,4 @@
 // @ts-nocheck
-export const { ImGui: ImGui, ImGui_Impl: ImGui_Impl };
+
+export const ImGUI = ImGui;
+export const ImGUI_Impl = ImGui_Impl;
