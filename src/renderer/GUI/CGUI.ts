@@ -17,20 +17,21 @@ class CGUI {
 
     ImGui_Impl.Init(this.g_core.GetRenderer().renderer.domElement);
 
-    requestAnimationFrame(this.animate);
+    requestAnimationFrame(this.Draw);
   }
 
-  private animate = (time: number): void => {
-    requestAnimationFrame(this.animate);
+  public Draw = (time: number): void => {
+    requestAnimationFrame(this.Draw);
 
     ImGui_Impl.NewFrame(time);
     ImGui.NewFrame();
 
-    ImGui.ShowDemoWindow();
+    // ImGui.ShowDemoWindow();
 
     ImGui.EndFrame();
     ImGui.Render();
 
+    this.g_core.GetRenderer().Draw();
     ImGui_Impl.RenderDrawData(ImGui.GetDrawData());
   };
 }

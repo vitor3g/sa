@@ -1,9 +1,11 @@
 import * as THREE from "three";
+import Stats from "stats.js";
 
 class CRenderer {
   private scene: THREE.Scene;
   private camera: THREE.PerspectiveCamera;
   public renderer: THREE.WebGLRenderer;
+  private stats: Stats;
 
   constructor() {
     this.scene = new THREE.Scene();
@@ -14,18 +16,29 @@ class CRenderer {
       0.1,
       1000
     );
+
+    this.camera.position.y = 5;
     this.camera.position.z = 5;
+    this.camera.position.x = 0;
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.shadowMap.enabled = true;
 
+    this.scene.background = new THREE.Color(0xa8def0);
+
     document.body.appendChild(this.renderer.domElement);
+
+    this.stats = new Stats();
+    this.stats.dom.style.position = "absolute";
+    this.stats.dom.style.top = "0px";
+
+    document.body.appendChild(this.stats.dom);
 
     window.addEventListener("resize", this.onWindowResize);
 
-    this.animate();
+    this.Draw();
   }
 
   private onWindowResize = (): void => {
@@ -34,17 +47,18 @@ class CRenderer {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   };
 
-  private animate = (): void => {
-    requestAnimationFrame(this.animate);
-
+  public Draw = (): void => {
     this.renderer.render(this.scene, this.camera);
+    this.stats.update();
+
+    this.renderer.resetState();
   };
 
-  public getScene(): THREE.Scene {
+  public GetScene(): THREE.Scene {
     return this.scene;
   }
 
-  public getCamera(): THREE.PerspectiveCamera {
+  public GetCamera(): THREE.PerspectiveCamera {
     return this.camera;
   }
 }

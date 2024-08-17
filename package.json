@@ -17,6 +17,7 @@
   "dependencies": {
     "@zhobo63/imgui-ts": "^0.1.45",
     "path": "^0.12.7",
+    "stats.js": "^0.17.0",
     "three": "^0.167.1"
   }
 }
