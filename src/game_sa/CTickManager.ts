@@ -89,7 +89,7 @@ class CTickManager extends EventTarget {
       this.fps = 1000 / this.timeDiff;
       this.lastTimestamp = this.timestamp;
 
-      controls.update(timestamp / 1000, timeDiffCapped / 1000);
+      controls.update();
 
       this.tick(timestamp, timeDiffCapped, this.fps, frame);
     };

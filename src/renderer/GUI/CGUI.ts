@@ -24,26 +24,24 @@ class CGUI {
     // Request the next frame
     requestAnimationFrame(this.Draw);
 
-    // this.g_core.getRenderer().renderer.state.reset();
+    this.g_core.getRenderer().renderer.state.reset();
 
-    // // New frame for ImGui
-    // ImGui_Impl.NewFrame(time);
-    // ImGui.NewFrame();
+    // New frame for ImGui
+    ImGui_Impl.NewFrame(time);
+    ImGui.NewFrame();
 
-    // // Render the ImGui demo window (or any custom UI)
-    // // ImGui.ShowDemoWindow();
+    // Render the ImGui demo window (or any custom UI)
+    ImGui.ShowDemoWindow();
 
-    // // Render the Three.js scene
+    // Render the Three.js scene
 
-    // // End the ImGui frame and render the ImGui UI
-    // ImGui.EndFrame();
-    // ImGui.Render();
+    // End the ImGui frame and render the ImGui UI
+    ImGui.EndFrame();
+    ImGui.Render();
     this.g_core.getRenderer().Draw();
 
-    // ImGui_Impl.ClearBuffer(new ImGui.ImVec4(0.25, 0.25, 0.25, 1));
-    //
     // Render the ImGui draw data
-    // ImGui_Impl.RenderDrawData(ImGui.GetDrawData());
+    ImGui_Impl.RenderDrawData(ImGui.GetDrawData());
   };
 }
 

@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import Rapier from "@dimforge/rapier3d";
-import { CCore } from "@/app/CCore";
 import { CGameSA } from "./CGameSA";
 import RAPIER from "@dimforge/rapier3d";
 import { CONTROLLER_BODY_RADIUS } from "./CPlayerController";
@@ -14,10 +13,7 @@ export type PhysicsObject = {
 };
 
 class CPhysicsObject {
-  constructor(
-    private readonly g_core: CCore,
-    private readonly g_gamesa: CGameSA
-  ) {}
+  constructor(private readonly g_gamesa: CGameSA) {}
 
   public addPlayerPhysics(
     autoAnimate: boolean = true,

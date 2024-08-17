@@ -1,7 +1,5 @@
 import * as THREE from "three";
 import Stats from "stats.js";
-import { CCore } from "@/app/CCore";
-import { PointerLockControls } from "three/examples/jsm/Addons.js";
 
 class CRenderer {
   private scene: THREE.Scene;
@@ -9,7 +7,7 @@ class CRenderer {
   public renderer: THREE.WebGLRenderer;
   private stats: Stats;
 
-  constructor(private readonly g_core: CCore) {
+  constructor() {
     this.scene = new THREE.Scene();
 
     this.camera = new THREE.PerspectiveCamera(

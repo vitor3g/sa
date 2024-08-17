@@ -19,7 +19,7 @@ class CGameSA {
   constructor(private readonly g_core: CCore) {
     this.CCamera = new CCamera(this.g_core);
     this.CLighting = new CLighting(this.g_core);
-    this.CPhysicsObject = new CPhysicsObject(this.g_core, this);
+    this.CPhysicsObject = new CPhysicsObject(this);
     this.CWorldSA = new CWorldSA(this.g_core, this);
 
     this.CPlayerSA = new CPlayerSA(this.g_core, this);

@@ -1,21 +1,9 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
-import { CInputManager, KEYS } from "./CInputManager";
-import { CCore } from "@/app/CCore";
-import RAPIER, {
-  QueryFilterFlags,
-  Ray,
-  RigidBody,
-  World,
-} from "@dimforge/rapier3d";
+import { QueryFilterFlags, Ray, RigidBody, World } from "@dimforge/rapier3d";
 import { A, D, DIRECTIONS, S, W } from "@/utils/utils";
 
 // * local variables
-const quaternion_0 = new THREE.Quaternion();
-const quaternion_1 = new THREE.Quaternion();
-const vec3_0 = new THREE.Vector3();
-const vec3_1 = new THREE.Vector3();
-let ray_0: RAPIER.Ray;
 export const CONTROLLER_BODY_RADIUS = 0.1;
 
 class CPlayerController {
@@ -51,7 +39,6 @@ class CPlayerController {
   theta: number;
 
   constructor(
-    private g_core: CCore,
     model: THREE.Group,
     mixer: THREE.AnimationMixer,
     animationsMap: Map<string, THREE.AnimationAction>,

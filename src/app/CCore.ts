@@ -9,7 +9,7 @@ class CCore {
   private readonly CGameSA: CGameSA;
 
   constructor(private readonly g_physicsEngine: PhysicsEngine) {
-    this.Renderer = new CRenderer(this);
+    this.Renderer = new CRenderer();
     this.CGameSA = new CGameSA(this);
     this.CGUI = new CGUI(this);
   }

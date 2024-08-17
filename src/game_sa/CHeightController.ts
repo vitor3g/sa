@@ -27,7 +27,7 @@ class CHeightController {
     this.grounded = false;
   }
 
-  update(timestamp: number, timeDiff: number) {
+  update(timestamp: number) {
     this.isAnimating = !this.grounded;
 
     if (this.isAnimating) {

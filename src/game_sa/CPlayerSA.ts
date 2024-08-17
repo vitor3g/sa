@@ -39,7 +39,6 @@ class CPlayerSA {
         .addPlayerPhysics(true, () => {});
 
       self.controller = new CPlayerController(
-        self.g_core,
         model,
         mixer,
         animationsMap,
@@ -70,7 +69,7 @@ class CPlayerSA {
     );
   }
 
-  public update(time: number, timeDiff: number) {
+  public update() {
     let deltaTime = clock.getDelta();
 
     if (this.controller) {
