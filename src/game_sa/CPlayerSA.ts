@@ -10,7 +10,6 @@ const clock = new THREE.Clock();
 
 class CPlayerSA {
   private controller: CPlayerController | undefined;
-  private keysPressed: any = {};
 
   constructor(private readonly g_core: CCore, private g_gamesa: CGameSA) {
     const self = this;
@@ -39,6 +38,7 @@ class CPlayerSA {
         .addPlayerPhysics(true, () => {});
 
       self.controller = new CPlayerController(
+        self.g_core,
         model,
         mixer,
         animationsMap,
@@ -49,24 +49,6 @@ class CPlayerSA {
         rigidBody
       );
     });
-
-    document.addEventListener(
-      "keydown",
-      (event) => {
-        if (event.altKey && this.controller) {
-          this.controller.switchRunToggle();
-        }
-        this.keysPressed[event.key.toLowerCase()] = true;
-      },
-      false
-    );
-    document.addEventListener(
-      "keyup",
-      (event) => {
-        this.keysPressed[event.key.toLowerCase()] = false;
-      },
-      false
-    );
   }
 
   public update() {
@@ -75,8 +57,7 @@ class CPlayerSA {
     if (this.controller) {
       this.controller.update(
         this.g_gamesa.getWorld().getPhysicsWorld(),
-        deltaTime,
-        this.keysPressed
+        deltaTime
       );
     }
   }

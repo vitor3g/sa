@@ -31,7 +31,7 @@ class CGUI {
     ImGui.NewFrame();
 
     // Render the ImGui demo window (or any custom UI)
-    ImGui.ShowDemoWindow();
+    // ImGui.ShowDemoWindow();
 
     // Render the Three.js scene
 

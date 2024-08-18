@@ -10,12 +10,16 @@ class CCamera {
       this.g_core.getRenderer().renderer.domElement
     );
 
-    this.camera.enableDamping = true;
+    this.camera.enableRotate = true;
     this.camera.enablePan = true;
+    this.camera.enableZoom = true;
+    this.camera.maxPolarAngle = Math.PI / 2.1;
+    this.camera.minPolarAngle = Math.PI / 4;
+    this.camera.target.set(0, 1, 0);
+    this.camera.update();
+
     this.camera.minDistance = 3;
     this.camera.maxDistance = 3;
-    this.camera.maxPolarAngle = Math.PI / 2 - 0.05;
-    this.camera.minPolarAngle = Math.PI / 4;
 
     this.update();
   }

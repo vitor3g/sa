@@ -8,6 +8,7 @@ export enum KEYS {
   SPACE = "Space",
   SHIFT_L = "ShiftLeft",
   SHIFT_R = "ShiftRight",
+  ALT_L = "AltLeft",
 }
 
 type MouseState = {
@@ -55,6 +56,7 @@ class CInputManager {
       (e) => this.onMouseMove(e),
       false
     );
+
     this.m_target.addEventListener("mouseup", (e) => this.onMouseUp(e), false);
 
     // Mouse Wheel
@@ -70,6 +72,7 @@ class CInputManager {
     const addPointerLockEvent = async () => {
       await renderer.domElement.requestPointerLock();
     };
+
     renderer.domElement.addEventListener("click", addPointerLockEvent);
     renderer.domElement.addEventListener("dblclick", addPointerLockEvent);
     renderer.domElement.addEventListener("mousedown", addPointerLockEvent);
@@ -86,13 +89,11 @@ class CInputManager {
     const changeMouseWheelLevel = () => {
       if (this.m_pointerLocked) {
         if (e.deltaY < 0) {
-          // * scrolling up, zooming in
           this.m_currentMouse.MouseWheelDelta = Math.max(
             this.m_currentMouse.MouseWheelDelta - SCROLL_LEVEL_STEP,
             MIN_ZOOM_LEVEL
           );
         } else if (e.deltaY > 0) {
-          // * scrolling down, zooming out
           this.m_currentMouse.MouseWheelDelta = Math.min(
             this.m_currentMouse.MouseWheelDelta + SCROLL_LEVEL_STEP,
             MAX_ZOOM_LEVEL
@@ -159,7 +160,7 @@ class CInputManager {
     }
   }
 
-  private isKeyDown(keyCode: string | number) {
+  public isKeyDown(keyCode: string | number) {
     if (this.m_pointerLocked) {
       const hasKeyCode = this.m_currentKeys.get(keyCode as string);
       if (hasKeyCode) {
@@ -228,6 +229,14 @@ class CInputManager {
     } else {
       return inAction && inAction();
     }
+  }
+
+  public runActionByPattern(
+    keys: string[],
+    action: (activeKeys: string[]) => void
+  ) {
+    const activeKeys = keys.filter((key) => this.isKeyDown(key));
+    return activeKeys.length > 0 && action(activeKeys);
   }
 }
 

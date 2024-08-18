@@ -72,7 +72,7 @@ class CWorldSA {
     // Resetar o estado do WebGL antes de renderizar o ImGui
     this.g_core.getRenderer().renderer.state.reset();
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 10; i++) {
       this._addCubeMesh(
         new THREE.Vector3(
           (Math.random() - 0.5) * 20,
